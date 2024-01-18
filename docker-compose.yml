@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  Notification-pg:
+    image: bitnami/postgresql
+    container_name: Notification_Database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=mariogomes
+      - POSTGRESQL_PASSWORD=1qaz2wsx
+      - POSTGRESQL_DATABASE=notification
+    volumes:
+      - pgdata:/data/postgres
+    network_mode: host
