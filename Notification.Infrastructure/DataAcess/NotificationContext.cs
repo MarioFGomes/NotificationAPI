@@ -17,7 +17,7 @@ namespace Notification.Infrastructure.DataAcess
         public DbSet<NotificationDevice> notificationDevices { get; set; }
         public DbSet<NotificationTemplate> notificationTemplates { get; set; }
 
-        public DbSet<NotificationSent> notificationSentsSent { get; set; }
+        public DbSet<NotificationSent> notificationSent { get; set; }
 
         public DbSet<NotificationType> notificationTypes { get; set; }
 

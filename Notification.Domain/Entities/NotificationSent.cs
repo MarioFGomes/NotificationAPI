@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Notification.Domain.Entities; 
-public class NotificationSent 
+public class NotificationSent: BaseEntity 
 {
     public string to { get; set; }
     public string from { get; set; }

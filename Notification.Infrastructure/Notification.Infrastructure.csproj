@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Notification.Domain\Notification.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAcess\Migrations\Version\" />
+  </ItemGroup>
+
 </Project>
