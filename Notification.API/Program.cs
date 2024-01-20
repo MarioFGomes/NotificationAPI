@@ -1,47 +1,63 @@
 
-namespace Notification.API {
-    public class Program {
-        public static void Main(string[] args) {
-            var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddAuthorization();
+using Microsoft.Extensions.DependencyInjection;
+using Notification.API.Filter;
+using Notification.Aplication.Commands.CreateNotificationTypes;
+using Notification.Aplication.Service.Automapper;
+using Notification.Infrastructure.DataAcess;
+using Notification.Infrastructure.DataAcess.Migrations;
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+var builder = WebApplication.CreateBuilder(args);
 
-            var app = builder.Build();
+// Add services to the container.
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment()) {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-            app.UseHttpsRedirection();
+builder.Services.AddRepository(builder.Configuration);
 
-            app.UseAuthorization();
 
-            var summaries = new[]
-            {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(config => {
+    config.AddProfile(new AutoMapperConfiguration());
+}).CreateMapper());
 
-            app.MapGet("/weatherforecast", (HttpContext httpContext) => {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast")
-            .WithOpenApi();
 
-            app.Run();
-        }
-    }
+builder.Services.AddMediatR(s => s.RegisterServicesFromAssemblies(typeof(CreateNotificationsTypesCommand).Assembly));
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment()) {
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+DatabaseUpdate();
+
+
+app.Run();
+
+void DatabaseUpdate() {
+
+  var Conexao = builder.Configuration.GetSection("ConnectionStrings:PostgreSQL").Value;
+
+ var NomeDataBase = builder.Configuration.GetSection("ConnectionStrings:database").Value;
+
+ Database.CriarDatabase(Conexao, NomeDataBase);
+
+ app.MigrateBancodeDados();
+
+}
+public partial class Program { }
