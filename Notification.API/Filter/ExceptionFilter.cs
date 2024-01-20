@@ -28,7 +28,7 @@ namespace Notification.API.Filter {
             var validationError = context.Exception as ValidationErrorException;
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            context.Result = new ObjectResult(new ResponseErrorJson(validationError.MessagesErros));
+            context.Result = new ObjectResult(new ResponseErrorJson(validationError?.MessagesErros));
         }
 
         private static void UnknownError(ExceptionContext context) {

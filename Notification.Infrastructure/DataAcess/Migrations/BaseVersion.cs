@@ -11,7 +11,7 @@ public static class BaseVersion
     public static ICreateTableColumnOptionOrWithColumnSyntax InsarirColunasPadrao(ICreateTableWithColumnOrSchemaOrDescriptionSyntax tabela) {
 
         return tabela.WithColumn("Id").AsGuid().PrimaryKey()
-                 .WithColumn("DataRegisto").AsDateTime().NotNullable()
+                 .WithColumn("CreatedAt").AsDateTime().NotNullable()
                  .WithColumn("LastUpdate").AsDateTime().NotNullable()
                  .WithColumn("Status").AsInt32().NotNullable();
     }

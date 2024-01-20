@@ -12,14 +12,19 @@ namespace Notification.Infrastructure.DataAcess
     public class NotificationContext : DbContext
     {
 
-        public NotificationContext(DbContextOptions<NotificationContext> options) : base(options) { }
+        public NotificationContext(DbContextOptions<NotificationContext> options) : base(options) 
+        {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+
+        }
 
         public DbSet<NotificationDevice> notificationDevices { get; set; }
         public DbSet<NotificationTemplate> notificationTemplates { get; set; }
 
         public DbSet<NotificationSent> notificationSent { get; set; }
 
-        public DbSet<NotificationType> notificationTypes { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

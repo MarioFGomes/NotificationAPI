@@ -38,13 +38,13 @@ public static class Bootstrapper
 
     private static void AddContexto(IServiceCollection services, IConfiguration configurationManager) 
     {
-       var conectionString = configurationManager.GetSection("ConnectionStrings").Value;
+       var conectionString = configurationManager.GetSection("ConnectionStrings:PostgreSQL").Value;
 
-      services.AddDbContext<NotificationContext>(dbContextOptions => {
+        services.AddDbContext<NotificationContext>(dbContextOptions => {
                 dbContextOptions.UseNpgsql(conectionString);
                 dbContextOptions.UseLazyLoadingProxies();
 
-      });
+        });
 
     }
 

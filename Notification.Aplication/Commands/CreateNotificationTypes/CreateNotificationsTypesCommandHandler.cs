@@ -45,5 +45,6 @@ public class CreateNotificationsTypesCommandHandler : IRequestHandler<CreateNoti
 
             throw new ValidationErrorException(messageError);
         }
+        
     }
 }

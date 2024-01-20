@@ -3,7 +3,7 @@ using Notification.Domain.Entities;
 using Notification.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +18,17 @@ public class NotificationTypeRepository : INotificationTypeRepository
     }
     public async Task CreateAsync(NotificationType request) {
       
-        await _db.notificationTypes.AddAsync(request);
+        await _db.NotificationTypes.AddAsync(request);
     }
 
     public async Task<ICollection<NotificationType>> GetbyAllAsync(string query) 
     {
 
-        IQueryable<NotificationType> notificationType = _db.notificationTypes;
+        IQueryable<NotificationType> notificationType = _db.NotificationTypes;
 
         if (!string.IsNullOrWhiteSpace(query)) {
-            notificationType = notificationType.Where(u => u.Name.Contains(query) || u.Description.Contains(query));
+            
+            notificationType = notificationType.Where(u => u.name.Contains(query) || u.description.Contains(query));
 
         }
         return await notificationType.ToListAsync();
@@ -35,11 +36,11 @@ public class NotificationTypeRepository : INotificationTypeRepository
 
     public async Task<NotificationType> GetbyIdAsync(Guid Id) 
     {
-        return await _db.notificationTypes.SingleOrDefaultAsync(u => u.Id == Id); 
+        return await _db.NotificationTypes.SingleOrDefaultAsync(u => u.Id.Equals(Id)); 
     }
 
     public Task UpdateAsync(NotificationType request) {
-       _db.notificationTypes.Update(request);
+       _db.NotificationTypes.Update(request);
         return Task.CompletedTask;
     }
 }

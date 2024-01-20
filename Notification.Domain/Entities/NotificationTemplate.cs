@@ -11,6 +11,6 @@ public class NotificationTemplate: BaseEntity
     public string description { get; set; }
     public string body { get; set; }
     public Guid NotificationTypeId { get; set; }
-    public NotificationType notificationType { get; set; }
+    public virtual NotificationType notificationType { get; set; }
     
 }

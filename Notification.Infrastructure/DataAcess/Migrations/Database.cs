@@ -14,7 +14,7 @@ public static class Database
 
         var parameters= new DynamicParameters();
         parameters.Add("name", nameDatabase);
-        var registros = myconecction.Query("SELECT * FROM pg_database WHERE datname=@name", parameters);
+        var registros = myconecction.Query("select * from pg_database where datname = 'notification'");
 
         if (!registros.Any()) {
             myconecction.Execute($"CREATE DATABASE {nameDatabase}");

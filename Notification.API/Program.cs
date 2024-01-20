@@ -6,6 +6,7 @@ using Notification.Aplication.Commands.CreateNotificationTypes;
 using Notification.Aplication.Service.Automapper;
 using Notification.Infrastructure.DataAcess;
 using Notification.Infrastructure.DataAcess.Migrations;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,7 +56,7 @@ void DatabaseUpdate() {
 
  var NomeDataBase = builder.Configuration.GetSection("ConnectionStrings:database").Value;
 
- Database.CriarDatabase(Conexao, NomeDataBase);
+ //Database.CriarDatabase(Conexao, NomeDataBase);
 
  app.MigrateBancodeDados();
 

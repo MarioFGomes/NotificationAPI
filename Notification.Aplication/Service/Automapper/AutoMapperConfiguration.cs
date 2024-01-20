@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Notification.Aplication.Commands.CreateNotificationTypes;
+using Notification.Aplication.Commands.UpdateNotificationType;
 using Notification.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ public class AutoMapperConfiguration: Profile
     public AutoMapperConfiguration()
     {
         CreateMap<CreateNotificationsTypesCommand, NotificationType>();
+        CreateMap<UpdateNotificationTypesCommand, NotificationType>();
     }
 }
