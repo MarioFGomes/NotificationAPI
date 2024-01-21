@@ -41,7 +41,7 @@ public static class Bootstrapper
        var conectionString = configurationManager.GetSection("ConnectionStrings:PostgreSQL").Value;
 
         services.AddDbContext<NotificationContext>(dbContextOptions => {
-                dbContextOptions.UseNpgsql(conectionString);
+                dbContextOptions.UseNpgsql(conectionString,o=>o.UseNodaTime());
                 dbContextOptions.UseLazyLoadingProxies();
 
         });

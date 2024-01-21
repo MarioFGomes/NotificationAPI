@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Notification.Infrastructure.DataAcess.Migrations; 
 public static class MigrationExtension 
 {
-    public static void MigrateBancodeDados(this IApplicationBuilder app) {
+    public static void MigrationsDataBase(this IApplicationBuilder app) {
         using var scope = app.ApplicationServices.CreateScope();
         var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
         runner.ListMigrations();

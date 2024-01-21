@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Notification.API.Filter;
-using Notification.Aplication.Commands.CreateNotificationTypes;
+using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
 using Notification.Aplication.Service.Automapper;
 using Notification.Infrastructure.DataAcess;
 using Notification.Infrastructure.DataAcess.Migrations;
@@ -45,20 +45,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-DatabaseUpdate();
-
 
 app.Run();
 
-void DatabaseUpdate() {
+ app.MigrationsDataBase();
 
-  var Conexao = builder.Configuration.GetSection("ConnectionStrings:PostgreSQL").Value;
 
- var NomeDataBase = builder.Configuration.GetSection("ConnectionStrings:database").Value;
-
- //Database.CriarDatabase(Conexao, NomeDataBase);
-
- app.MigrateBancodeDados();
-
-}
 public partial class Program { }

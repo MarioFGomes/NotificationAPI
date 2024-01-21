@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
+    <Folder Include="DTO\Request\" />
   </ItemGroup>
 
 </Project>

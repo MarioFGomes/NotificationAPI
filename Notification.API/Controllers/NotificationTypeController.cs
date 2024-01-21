@@ -1,9 +1,13 @@
-﻿using MediatR;
+﻿using Azure.Core;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Notification.Aplication.Commands.CreateNotificationTypes;
-using Notification.Aplication.Commands.UpdateNotificationType;
+using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
+using Notification.Aplication.Commands.NotificationTypes.UpdateNotificationTypes;
+using Notification.Aplication.DTO.Response;
+using Notification.Aplication.Queries.NotificationTypes.GetAllNotificationTypes;
+using Notification.Aplication.Queries.NotificationTypes.GetByIdNotificatioTypes;
 
-namespace Notification.API.Controllers; 
+namespace Notification.API.Controllers;
 public class NotificationTypeController: NotificationController 
 {
     [HttpPost]
@@ -16,19 +20,25 @@ public class NotificationTypeController: NotificationController
 
     [HttpGet]
     [Route("GetById")]
-    public async Task<IActionResult> GetById([FromServices] IMediator _mediator, [FromQuery] Guid Id) 
+    [ProducesResponseType(typeof(ResponseNotificationTypes), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetById([FromServices] IMediator _mediator,[FromQuery] Guid Id) 
     {
-        var result = await _mediator.Send(Id);
+        var request = new GetByIdNotificationTypesQuery(Id);
+
+        var result = await _mediator.Send(request);
+
+        if (result is null) return BadRequest("user not exists");
 
         return Ok(result);
     }
 
     [HttpGet]
     [Route("GetAll")]
-    public async Task<IActionResult> GetAll([FromServices] IMediator _mediator, string query) 
+    [ProducesResponseType(typeof(ResponseNotificationTypes), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll([FromServices] IMediator _mediator, string? query) 
     {
-        
-        var result = await _mediator.Send(query);
+        var request = new GetAllNotificationTypesQuery(query);
+        var result = await _mediator.Send(request);
 
         return Ok(result);
     }
