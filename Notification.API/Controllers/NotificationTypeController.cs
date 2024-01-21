@@ -23,13 +23,11 @@ public class NotificationTypeController: NotificationController
     [ProducesResponseType(typeof(ResponseNotificationTypes), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetById([FromServices] IMediator _mediator,[FromQuery] Guid Id) 
     {
-        var request = new GetByIdNotificationTypesQuery(Id);
+     var request = new GetByIdNotificationTypesQuery(Id);
 
-        var result = await _mediator.Send(request);
+     var result = await _mediator.Send(request);
 
-        if (result is null) return BadRequest("user not exists");
-
-        return Ok(result);
+      return Ok(result);  
     }
 
     [HttpGet]

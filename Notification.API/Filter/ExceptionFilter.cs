@@ -20,7 +20,9 @@ namespace Notification.API.Filter {
 
             if (context.Exception is ValidationErrorException) {
                 ValidationErrorException(context);
-            } 
+            } else if (context.Exception is GenericErrorException) {
+                ReferenceErrorException(context);
+            }
 
         }
 
@@ -29,6 +31,14 @@ namespace Notification.API.Filter {
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             context.Result = new ObjectResult(new ResponseErrorJson(validationError?.MessagesErros));
+        }
+
+        private static void ReferenceErrorException(ExceptionContext context) 
+        {
+            var refernceError = context.Exception as GenericErrorException;
+
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            context.Result = new ObjectResult(new ResponseErrorJson(refernceError?.Message));
         }
 
         private static void UnknownError(ExceptionContext context) {

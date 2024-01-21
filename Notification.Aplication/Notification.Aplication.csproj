@@ -17,7 +17,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\NotificationDevice\CreateNotificationDevice\" />
+    <Folder Include="Commands\NotificationDevice\DeleteNotificationDevice\" />
+    <Folder Include="Commands\NotificationDevice\UpdateNotificationDevice\" />
+    <Folder Include="Commands\NotificationTemplate\" />
+    <Folder Include="Commands\NotificationSent\" />
     <Folder Include="DTO\Request\" />
+    <Folder Include="Queries\NotificationDevice\" />
+    <Folder Include="Queries\NotificationSent\" />
+    <Folder Include="Queries\NotificationTemplate\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ResourceErrorMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceErrorMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

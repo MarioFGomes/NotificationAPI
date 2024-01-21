@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Notification.Aplication.DTO.Response;
+using Notification.Aplication.ExceptionBase;
 using Notification.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ public class GetByIdNotificationTypesQueryHandler : IRequestHandler<GetByIdNotif
     }
     public async Task<ResponseNotificationTypes> Handle(GetByIdNotificationTypesQuery request, CancellationToken cancellationToken) 
     {
-        var notificationTypes = await _notificationTypeRepository.GetbyIdAsync(request.Id);
-     
+        var notificationTypes = await _notificationTypeRepository.GetbyIdAsync(request.Id)?? throw new GenericErrorException(ResourceErrorMessages.UserNotFound);
+
         var result= _mapper.Map<ResponseNotificationTypes>(notificationTypes);
 
         return result;
