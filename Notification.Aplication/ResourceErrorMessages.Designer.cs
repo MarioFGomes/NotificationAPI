@@ -61,11 +61,11 @@ namespace Notification.Aplication {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Sorry user not found please try again.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Sorry Notification Type not found please try again.
         /// </summary>
-        internal static string UserNotFound {
+        internal static string NotificationType {
             get {
-                return ResourceManager.GetString("UserNotFound", resourceCulture);
+                return ResourceManager.GetString("NotificationType", resourceCulture);
             }
         }
     }

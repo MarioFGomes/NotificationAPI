@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
+using Notification.Aplication.Commands.NotificationTypes.DeleteNotificationTypes;
 using Notification.Aplication.Commands.NotificationTypes.UpdateNotificationTypes;
 using Notification.Aplication.DTO.Response;
 using Notification.Domain.Entities;
@@ -16,6 +17,7 @@ public class AutoMapperConfiguration: Profile
     {
         CreateMap<CreateNotificationsTypesCommand, NotificationType>();
         CreateMap<UpdateNotificationTypesCommand, NotificationType>();
+        CreateMap<DeleteNotificationTypeCommand, NotificationType>();
         CreateMap<NotificationType, ResponseNotificationTypes>();
     }
 }

@@ -27,7 +27,7 @@ namespace Notification.Aplication.Commands.NotificationTypes.UpdateNotificationT
         {
             await Validator(request);
 
-            var notificationType = await _notificationTypeRepository.GetbyIdAsync(request.Id);
+            var notificationType = await _notificationTypeRepository.GetbyIdAsync(request.Id) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationType);
 
             notificationType = _mapper.Map(request, notificationType);
 

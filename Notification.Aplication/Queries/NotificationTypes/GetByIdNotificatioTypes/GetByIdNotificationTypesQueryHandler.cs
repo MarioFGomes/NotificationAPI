@@ -22,7 +22,7 @@ public class GetByIdNotificationTypesQueryHandler : IRequestHandler<GetByIdNotif
     }
     public async Task<ResponseNotificationTypes> Handle(GetByIdNotificationTypesQuery request, CancellationToken cancellationToken) 
     {
-        var notificationTypes = await _notificationTypeRepository.GetbyIdAsync(request.Id)?? throw new GenericErrorException(ResourceErrorMessages.UserNotFound);
+        var notificationTypes = await _notificationTypeRepository.GetbyIdAsync(request.Id)?? throw new GenericErrorException(ResourceErrorMessages.NotificationType);
 
         var result= _mapper.Map<ResponseNotificationTypes>(notificationTypes);
 

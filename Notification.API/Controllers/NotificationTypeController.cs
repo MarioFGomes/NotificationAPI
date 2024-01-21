@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
+using Notification.Aplication.Commands.NotificationTypes.DeleteNotificationTypes;
 using Notification.Aplication.Commands.NotificationTypes.UpdateNotificationTypes;
 using Notification.Aplication.DTO.Response;
 using Notification.Aplication.Queries.NotificationTypes.GetAllNotificationTypes;
@@ -49,5 +50,14 @@ public class NotificationTypeController: NotificationController
         await _mediator.Send(request);
 
         return NoContent();
+    }
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromServices] IMediator _mediator, [FromQuery] Guid Id) 
+    {
+        var request = new DeleteNotificationTypeCommand(Id);
+
+        await _mediator.Send(request);
+
+        return NoContent() ;
     }
 }

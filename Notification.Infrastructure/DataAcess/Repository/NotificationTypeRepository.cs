@@ -24,11 +24,11 @@ public class NotificationTypeRepository : INotificationTypeRepository
     public async Task<ICollection<NotificationType?>> GetbyAllAsync(string? query) 
     {
 
-        IQueryable<NotificationType?> notificationType = _db.NotificationTypes;
+        IQueryable<NotificationType?> notificationType = _db.NotificationTypes.Where(u=> u.Status == 1);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             
-            notificationType = notificationType.Where(u => u.name.Contains(query) || u.description.Contains(query) && u.Status==1);
+            notificationType = notificationType.Where(u => u.name.Contains(query) || u.description.Contains(query));
 
         }
         return await notificationType.ToListAsync();
