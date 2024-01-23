@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Notification.Domain.Enum;
 
 namespace Notification.Infrastructure.DataAcess.Repository;
 public class NotificationTypeRepository : INotificationTypeRepository 
@@ -24,7 +25,7 @@ public class NotificationTypeRepository : INotificationTypeRepository
     public async Task<ICollection<NotificationType?>> GetbyAllAsync(string? query) 
     {
 
-        IQueryable<NotificationType?> notificationType = _db.NotificationTypes.Where(u=> u.Status == 1);
+        IQueryable<NotificationType?> notificationType = _db.NotificationTypes.Where(u=> u.Status == (int)NotificationStatus.Active);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             
@@ -36,7 +37,7 @@ public class NotificationTypeRepository : INotificationTypeRepository
 
     public async Task<NotificationType?> GetbyIdAsync(Guid Id) 
     {
-        return await _db.NotificationTypes.SingleOrDefaultAsync(u => u.Id.Equals(Id) && u.Status==1); 
+        return await _db.NotificationTypes.SingleOrDefaultAsync(u => u.Id.Equals(Id) && u.Status== (int)NotificationStatus.Active); 
     }
 
     public Task UpdateAsync(NotificationType request) {

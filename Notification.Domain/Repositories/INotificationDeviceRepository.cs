@@ -11,6 +11,6 @@ public interface INotificationDeviceRepository
     Task CreateAsync(NotificationDevice request);
     Task UpdateAsync(NotificationDevice request);
     Task<NotificationDevice> GetbyIdAsync(Guid Id);
-    Task<ICollection<NotificationDevice>> GetbyAllAsync(string query);
+    Task<ICollection<NotificationDevice>> GetAllAsync(string query);
 
 }

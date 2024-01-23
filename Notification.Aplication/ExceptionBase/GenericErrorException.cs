@@ -6,10 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Notification.Aplication.ExceptionBase;
-public class GenericErrorException : NotificationExceptions {
-    public GenericErrorException(string messages) : base(messages) 
-    {
-    }
+public class GenericErrorException : NotificationExceptions 
+{
+    public GenericErrorException(string messages) : base(messages) {}
 
     protected GenericErrorException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }

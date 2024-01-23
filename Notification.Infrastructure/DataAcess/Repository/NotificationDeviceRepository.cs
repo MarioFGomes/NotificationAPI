@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Notification.Domain.Enum;
 
 namespace Notification.Infrastructure.DataAcess.Repository {
     public class NotificationDeviceRepository : INotificationDeviceRepository {
@@ -15,11 +16,11 @@ namespace Notification.Infrastructure.DataAcess.Repository {
             _db = notificationContext;
         }
         public async Task  CreateAsync(NotificationDevice request) {
-            await _db.notificationDevices.AddAsync(request);
+            await _db.NotificationDevices.AddAsync(request);
         }
 
-        public async Task<ICollection<NotificationDevice>> GetbyAllAsync(string query) {
-            IQueryable<NotificationDevice> notificationDevices = _db.notificationDevices;
+        public async Task<ICollection<NotificationDevice?>> GetAllAsync(string query) {
+            IQueryable<NotificationDevice?> notificationDevices = _db.NotificationDevices.Where(d=>d.Status== (int)NotificationStatus.Active);
 
             if (!string.IsNullOrWhiteSpace(query)) {
                 notificationDevices = notificationDevices.Where(u => u.description.Contains(query) || u.device_token.Contains(query));
@@ -28,16 +29,15 @@ namespace Notification.Infrastructure.DataAcess.Repository {
             return await notificationDevices.ToListAsync();
         }
 
-        public async Task<NotificationDevice> GetbyIdAsync(Guid Id) 
-        {
-           
-            return await _db.notificationDevices.SingleOrDefaultAsync(e => e.Id == Id);
+        public async Task<NotificationDevice?> GetbyIdAsync(Guid Id) 
+        { 
+            return await _db.NotificationDevices.SingleOrDefaultAsync(e => e.Id == Id && e.Status== (int)NotificationStatus.Active);
         }
 
         public  Task UpdateAsync(NotificationDevice request) 
         {
             
-            _db.notificationDevices.Update(request);
+            _db.NotificationDevices.Update(request);
 
             return Task.CompletedTask;
         }

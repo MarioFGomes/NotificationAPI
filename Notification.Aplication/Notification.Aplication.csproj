@@ -17,13 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\NotificationDevice\CreateNotificationDevice\" />
-    <Folder Include="Commands\NotificationDevice\DeleteNotificationDevice\" />
-    <Folder Include="Commands\NotificationDevice\UpdateNotificationDevice\" />
     <Folder Include="Commands\NotificationTemplate\" />
     <Folder Include="Commands\NotificationSent\" />
     <Folder Include="DTO\Request\" />
-    <Folder Include="Queries\NotificationDevice\" />
     <Folder Include="Queries\NotificationSent\" />
     <Folder Include="Queries\NotificationTemplate\" />
   </ItemGroup>

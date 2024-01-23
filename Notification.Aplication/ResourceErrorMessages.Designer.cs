@@ -61,11 +61,92 @@ namespace Notification.Aplication {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Sorry Notification Type not found please try again.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Description cannot be empty.
         /// </summary>
-        internal static string NotificationType {
+        internal static string DescriptionEmpty {
             get {
-                return ResourceManager.GetString("NotificationType", resourceCulture);
+                return ResourceManager.GetString("DescriptionEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The description must contain at least 8 letters.
+        /// </summary>
+        internal static string DescritionLength {
+            get {
+                return ResourceManager.GetString("DescritionLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a divice Owner is requerid.
+        /// </summary>
+        internal static string DeviceOwner {
+            get {
+                return ResourceManager.GetString("DeviceOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a divice token is requerid.
+        /// </summary>
+        internal static string DeviceToken {
+            get {
+                return ResourceManager.GetString("DeviceToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The device must contain at least 5 letters.
+        /// </summary>
+        internal static string DeviceTokenLength {
+            get {
+                return ResourceManager.GetString("DeviceTokenLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Device Type is requerid.
+        /// </summary>
+        internal static string DeviceTypeEmpty {
+            get {
+                return ResourceManager.GetString("DeviceTypeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Name can not be empty.
+        /// </summary>
+        internal static string NameEmpty {
+            get {
+                return ResourceManager.GetString("NameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The name must contain at least 5 letters.
+        /// </summary>
+        internal static string NameLength {
+            get {
+                return ResourceManager.GetString("NameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Id can not be empty.
+        /// </summary>
+        internal static string NotificationId {
+            get {
+                return ResourceManager.GetString("NotificationId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Sorry we not found please try again.
+        /// </summary>
+        internal static string NotificationNotFound {
+            get {
+                return ResourceManager.GetString("NotificationNotFound", resourceCulture);
             }
         }
     }

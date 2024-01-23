@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Notification.Aplication.ExceptionBase;
+using Notification.Domain.Enum;
 using Notification.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,11 @@ public class DeleteNotificationTypeCommandHandler : IRequestHandler<DeleteNotifi
     }
     public async Task<Unit> Handle(DeleteNotificationTypeCommand request, CancellationToken cancellationToken) 
     {
-        var notificationType = await _notificationTypeRepository.GetbyIdAsync(request.Id) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationType);
+        var notificationType = await _notificationTypeRepository.GetbyIdAsync(request.Id) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationNotFound);
 
         notificationType = _mapper.Map(request, notificationType);
 
-        notificationType.Status = 0;
+        notificationType.Status = (int)NotificationStatus.Deleted;
         notificationType.LastUpdate = DateTime.UtcNow;
 
         await _notificationTypeRepository.UpdateAsync(notificationType);

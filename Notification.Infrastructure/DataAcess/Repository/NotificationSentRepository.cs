@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Notification.Domain.Enum;
 
 namespace Notification.Infrastructure.DataAcess.Repository;
 public class NotificationSentRepository : INotificationSentRepository 
@@ -19,12 +20,12 @@ public class NotificationSentRepository : INotificationSentRepository
     public async Task CreateAsync(NotificationSent request) 
     {
 
-        await _db.notificationSent.AddAsync(request);
+        await _db.NotificationSent.AddAsync(request);
     }
 
-    public async Task<ICollection<NotificationSent>> GetbyAllAsync(string query) 
+    public async Task<ICollection<NotificationSent?>> GetbyAllAsync(string query) 
     {
-        IQueryable<NotificationSent> notificationsents = _db.notificationSent;
+        IQueryable<NotificationSent?> notificationsents = _db.NotificationSent.Where(s=>s.Status== (int)NotificationStatus.Active);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             notificationsents = notificationsents.Where(u => u.from.Contains(query) || u.to.Contains(query));
@@ -33,14 +34,15 @@ public class NotificationSentRepository : INotificationSentRepository
         return await notificationsents.ToListAsync();
     }
 
-    public async Task<NotificationSent> GetbyIdAsync(Guid Id) 
+    public async Task<NotificationSent?> GetbyIdAsync(Guid Id) 
     {
-        return await _db.notificationSent.SingleOrDefaultAsync(u => u.Id == Id);
+        return await _db.NotificationSent.SingleOrDefaultAsync(u => u.Id == Id && u.Status== (int)NotificationStatus.Active);
     }
 
     public Task UpdateAsync(NotificationSent request) 
     {
-        _db.notificationSent.Update(request);
-        return Task.CompletedTask;
+      _db.NotificationSent.Update(request);
+
+      return Task.CompletedTask;
     }
 }
