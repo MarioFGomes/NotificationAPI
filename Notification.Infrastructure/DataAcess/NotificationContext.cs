@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Notification.Domain.Entities;
+using Notification.Infrastructure.DataAcess.Migrations.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Notification.Infrastructure.DataAcess
         public DbSet<NotificationDevice> NotificationDevices { get; set; }
         public DbSet<NotificationTemplate> NotificationTemplate { get; set; }
 
-        public DbSet<NotificationSent> NotificationSent { get; set; }
+        public DbSet<NotificationSend> NotificationSent { get; set; }
 
         public DbSet<NotificationType> NotificationTypes { get; set; }
 
@@ -25,6 +26,8 @@ namespace Notification.Infrastructure.DataAcess
         {
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NotificationContext).Assembly);
+
+            
 
         }
 

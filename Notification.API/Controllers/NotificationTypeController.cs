@@ -20,9 +20,9 @@ public class NotificationTypeController: NotificationController
     }
 
     [HttpGet]
-    [Route("GetById")]
+    [Route("GetById/{Id:Guid}")]
     [ProducesResponseType(typeof(ResponseNotificationTypes), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetById([FromServices] IMediator _mediator,[FromQuery] Guid Id) 
+    public async Task<IActionResult> GetById([FromServices] IMediator _mediator,Guid Id) 
     {
      var request = new GetByIdNotificationTypesQuery(Id);
 
@@ -43,7 +43,8 @@ public class NotificationTypeController: NotificationController
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateNotificationType([FromServices] IMediator _mediator, [FromBody] UpdateNotificationTypesCommand request, [FromQuery] Guid Id) 
+    [Route("{Id:Guid}")]
+    public async Task<IActionResult> UpdateNotificationType([FromServices] IMediator _mediator, [FromBody] UpdateNotificationTypesCommand request, Guid Id) 
     {
         request.Id = Id;
 
@@ -52,7 +53,8 @@ public class NotificationTypeController: NotificationController
         return NoContent();
     }
     [HttpDelete]
-    public async Task<IActionResult> Delete([FromServices] IMediator _mediator, [FromQuery] Guid Id) 
+    [Route("{Id:Guid}")]
+    public async Task<IActionResult> Delete([FromServices] IMediator _mediator, Guid Id) 
     {
         var request = new DeleteNotificationTypeCommand(Id);
 

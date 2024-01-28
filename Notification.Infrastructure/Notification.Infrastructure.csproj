@@ -22,4 +22,9 @@
     <ProjectReference Include="..\Notification.Domain\Notification.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\SendSMS\" />
+    <Folder Include="Services\SendEmail\" />
+  </ItemGroup>
+
 </Project>

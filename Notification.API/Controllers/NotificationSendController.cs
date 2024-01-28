@@ -1,4 +1,4 @@
 ﻿namespace Notification.API.Controllers {
-    public class NotificationSentController {
+    public class NotificationSendController {
     }
 }

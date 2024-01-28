@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notification.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ public class BaseEntity
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.UtcNow;
-        Status = 1;
+        Status = (int)NotificationStatus.Active;
         LastUpdate = DateTime.UtcNow;
     }
 }

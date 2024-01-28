@@ -21,7 +21,7 @@ public class NotificationTemplateRepository : INotificationTemplateRepository
         await _db.NotificationTemplate.AddAsync(request);
     }
 
-    public async Task<ICollection<NotificationTemplate?>> GetbyAllAsync(string query) 
+    public async Task<ICollection<NotificationTemplate?>> GetAllAsync(string query) 
     {
         IQueryable<NotificationTemplate?> notificationTemplate = _db.NotificationTemplate.Where(u=>u.Status== (int)NotificationStatus.Active);
 

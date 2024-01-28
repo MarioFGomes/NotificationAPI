@@ -25,7 +25,7 @@ public class CreateNotificationDeviceCommandHandler : IRequestHandler<CreateNoti
         return notificationDevice.Id;
     }
 
-    private async Task Validator(CreateNotificationDeviceCommand request) {
+    private Task Validator(CreateNotificationDeviceCommand request) {
         var validator = new CreateNotificationDeviceValidator();
         var result = validator.Validate(request);
 
@@ -35,5 +35,6 @@ public class CreateNotificationDeviceCommandHandler : IRequestHandler<CreateNoti
             throw new ValidationErrorException(messageError);
         }
 
+        return Task.CompletedTask;
     }
 }

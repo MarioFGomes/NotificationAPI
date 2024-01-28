@@ -19,7 +19,7 @@ public class Version001 : Migration {
 
         NotificationDevice
               .WithColumn("Owner").AsString(200).NotNullable()
-              .WithColumn("description").AsString(150).NotNullable()
+              .WithColumn("description").AsString(150).Nullable()
               .WithColumn("device_type").AsString(50).NotNullable()
               .WithColumn("device_token").AsString(200).NotNullable();
 
@@ -31,21 +31,21 @@ public class Version001 : Migration {
               .WithColumn("description").AsString(200).NotNullable();
 
 
-        var NotificationTemplate = BaseVersion.InsarirColunasPadrao(Create.Table("NotificationTemplate"));
+        var NotificationTemplate = BaseVersion.InsarirColunasPadrao(Create.Table("NotificationTemplates"));
 
         NotificationTemplate
               .WithColumn("title").AsString(100).NotNullable()
               .WithColumn("description").AsString(200).NotNullable()
               .WithColumn("body").AsString(2000).NotNullable()
-              .WithColumn("NotificationTypeId").AsGuid().NotNullable();
+              .WithColumn("NotificationTypeId").AsGuid().ForeignKey("NotificationTypes","Id").NotNullable();
 
 
-        var NotificationSent = BaseVersion.InsarirColunasPadrao(Create.Table("NotificationSent"));
+        var NotificationSent = BaseVersion.InsarirColunasPadrao(Create.Table("NotificationSents"));
 
         NotificationSent
               .WithColumn("to").AsString(200).NotNullable()
               .WithColumn("from").AsString(200).NotNullable()
-              .WithColumn("notificationTemplateId").AsGuid().NotNullable()
-              .WithColumn("notificationDeviceId").AsGuid().NotNullable();
+              .WithColumn("notificationTemplateId").AsGuid().ForeignKey("NotificationTemplates","Id").NotNullable()
+              .WithColumn("notificationDeviceId").AsGuid().ForeignKey("NotificationDevices","Id").Nullable();
     }
 }

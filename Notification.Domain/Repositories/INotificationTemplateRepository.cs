@@ -11,5 +11,5 @@ public interface INotificationTemplateRepository
     Task CreateAsync(NotificationTemplate request);
     Task UpdateAsync(NotificationTemplate request);
     Task<NotificationTemplate> GetbyIdAsync(Guid Id);
-    Task<ICollection<NotificationTemplate>> GetbyAllAsync(string query);
+    Task<ICollection<NotificationTemplate>> GetAllAsync(string query);
 }

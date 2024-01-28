@@ -25,8 +25,6 @@ public class DeleteNotificationTypeCommandHandler : IRequestHandler<DeleteNotifi
     {
         var notificationType = await _notificationTypeRepository.GetbyIdAsync(request.Id) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationNotFound);
 
-        notificationType = _mapper.Map(request, notificationType);
-
         notificationType.Status = (int)NotificationStatus.Deleted;
         notificationType.LastUpdate = DateTime.UtcNow;
 

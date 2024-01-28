@@ -19,7 +19,7 @@ public class NotificationDeviceController : NotificationController
     }
 
     [HttpGet]
-    [Route("GetById")]
+    [Route("GetById/{Id:Guid}")]
     [ProducesResponseType(typeof(ResponseNotificationDevice), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetById([FromServices] IMediator _mediator, [FromQuery] Guid Id) 
     {
@@ -45,7 +45,9 @@ public class NotificationDeviceController : NotificationController
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateNotificationDevice([FromServices] IMediator _mediator, [FromBody] UpdateNotificationDeviceCommand request, [FromQuery] Guid Id) {
+    [Route("{Id:Guid}")]
+    public async Task<IActionResult> UpdateNotificationDevice([FromServices] IMediator _mediator, [FromBody] UpdateNotificationDeviceCommand request, Guid Id) 
+    {
        
         request.Id = Id;
 
@@ -54,6 +56,7 @@ public class NotificationDeviceController : NotificationController
         return NoContent();
     }
     [HttpDelete]
+    [Route("{Id:Guid}")]
     public async Task<IActionResult> Delete([FromServices] IMediator _mediator, [FromQuery] Guid Id) {
        
         var request = new DeleteNotificationDeviceCommand(Id);

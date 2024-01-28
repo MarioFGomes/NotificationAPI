@@ -27,7 +27,7 @@ public static class Bootstrapper
         services.AddScoped<INotificationDeviceRepository, NotificationDeviceRepository>()
                 .AddScoped<INotificationTypeRepository, NotificationTypeRepository>()
                 .AddScoped<INotificationTemplateRepository, NotificationTemplateRepository>()
-                .AddScoped<INotificationSentRepository, NotificationSentRepository>();
+                .AddScoped<INotificationSendRepository, NotificationSendRepository>();
 
     }
 

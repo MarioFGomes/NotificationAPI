@@ -17,11 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\NotificationTemplate\" />
-    <Folder Include="Commands\NotificationSent\" />
     <Folder Include="DTO\Request\" />
-    <Folder Include="Queries\NotificationSent\" />
-    <Folder Include="Queries\NotificationTemplate\" />
+    <Folder Include="Queries\NotificationSend\GetAllNotificationSend\" />
+    <Folder Include="Queries\NotificationSend\GetByIdNotificationSend\" />
   </ItemGroup>
 
   <ItemGroup>

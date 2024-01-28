@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace Notification.Infrastructure.DataAcess.Migrations; 
 public enum VersionNumbers 
 {
-    CreateNotificationTable=1
+    CreateNotificationTable=1,
+    SeedData=2
 }
