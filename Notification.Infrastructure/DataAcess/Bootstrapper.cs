@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Notification.Domain.Entities;
 using Notification.Domain.Repositories;
 using Notification.Infrastructure.DataAcess.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Notification.Infrastructure.Services.SendEmail;
+using SendGrid.Extensions.DependencyInjection;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Notification.Infrastructure.DataAcess; 
 public static class Bootstrapper 
@@ -20,6 +20,7 @@ public static class Bootstrapper
         AddRepositories(services);
         AddUnitOfWork(services);
         AddContexto(services, configurationManager);
+        AddMailService(services, configurationManager);
     }
 
     private static void AddRepositories(IServiceCollection services) 
@@ -45,6 +46,19 @@ public static class Bootstrapper
                 dbContextOptions.UseLazyLoadingProxies();
 
         });
+
+    }
+
+    public static void AddMailService(this IServiceCollection services, IConfiguration configuration) {
+        var config = new MailConfig();
+
+        configuration.GetSection("Notifications").Bind(config);
+
+        services.AddSingleton<MailConfig>(m => config);
+
+        services.AddSendGrid(sp => sp.ApiKey = config.SendGridApiKey);
+
+        services.AddTransient<ISendEmailService, SendEmailService>();
 
     }
 

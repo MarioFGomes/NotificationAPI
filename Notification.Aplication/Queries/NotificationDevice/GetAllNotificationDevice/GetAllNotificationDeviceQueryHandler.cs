@@ -13,16 +13,20 @@ public class GetAllNotificationDeviceQueryHandler : IRequestHandler<GetAllNotifi
 {
     private readonly INotificationDeviceRepository _notificationDeviceRepository;
     private readonly IMapper _mapper;
-    public GetAllNotificationDeviceQueryHandler(INotificationDeviceRepository notificationDeviceRepository, IMapper mapper)
+    private readonly ISendEmailService _SendEmailService;
+    public GetAllNotificationDeviceQueryHandler(INotificationDeviceRepository notificationDeviceRepository, IMapper mapper, ISendEmailService sendEmailService)
     {
         _notificationDeviceRepository = notificationDeviceRepository;
         _mapper = mapper;
+        _SendEmailService= sendEmailService;
     }
     public async Task<List<ResponseNotificationDevice>> Handle(GetAllNotificationDeviceQuery request, CancellationToken cancellationToken) 
     {
         var result  = await _notificationDeviceRepository.GetAllAsync(request.Query);
 
         var notificationDevices = _mapper.Map<List<ResponseNotificationDevice>>(result);
+
+        await _SendEmailService.SendAsync("Email de Teste", "Este é um email de teste", "narew59353@giratex.com", "Rodrigo Gomes");
 
         return notificationDevices;
 

@@ -18,8 +18,6 @@
 
   <ItemGroup>
     <Folder Include="DTO\Request\" />
-    <Folder Include="Queries\NotificationSend\GetAllNotificationSend\" />
-    <Folder Include="Queries\NotificationSend\GetByIdNotificationSend\" />
   </ItemGroup>
 
   <ItemGroup>

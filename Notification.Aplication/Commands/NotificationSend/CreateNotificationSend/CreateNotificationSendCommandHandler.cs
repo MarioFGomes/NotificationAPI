@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Notification.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Notification.Aplication.Commands.NotificationSend.CreateNotificationSend;
 public class CreateNotificationSendCommandHandler : IRequestHandler<CreateNotificationSendCommand, Unit> 
