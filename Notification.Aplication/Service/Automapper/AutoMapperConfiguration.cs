@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Notification.Aplication.Commands.NotificationDevice.CreateNotificationDevice;
 using Notification.Aplication.Commands.NotificationDevice.UpdateNotificationDevice;
+using Notification.Aplication.Commands.NotificationSend.CreateNotificationSend;
 using Notification.Aplication.Commands.NotificationTemplate.CreateNotificationTemplate;
 using Notification.Aplication.Commands.NotificationTemplate.UpdateNotificationTemplate;
 using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
@@ -29,5 +30,7 @@ public class AutoMapperConfiguration: Profile
         CreateMap<CreateNotificationTemplateCommand, NotificationTemplate>();
         CreateMap<NotificationTemplate, ResponseNotificationTemplate>();
         CreateMap<UpdateNotificationTemplateCommand, NotificationTemplate>();
+        CreateMap<NotificationSend, ResponseNotificationSend>();
+        CreateMap<CreateNotificationSendCommand, NotificationSend>();
     }
 }

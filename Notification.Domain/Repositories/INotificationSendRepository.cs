@@ -10,5 +10,5 @@ public interface INotificationSendRepository
 {
     Task CreateAsync(NotificationSend request);
     Task<NotificationSend> GetbyIdAsync(Guid Id);
-    Task<ICollection<NotificationSend>> GetbyAllAsync(string query);
+    Task<ICollection<NotificationSend>> GetAllAsync(string query);
 }

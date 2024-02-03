@@ -42,11 +42,12 @@ public class SendEmailService : ISendEmailService
         }
     }
 
-    public async Task  SendNativeAsync(string subject, string content, string toEmail, string toName) {
+    public async Task  SendNativeAsync(string subject, string content, string toEmail, string toName) 
+    {
         var email = new MimeMessage();
 
-        email.From.Add(new MailboxAddress("Mário Gomes", "sender@email.com"));
-        email.To.Add(new MailboxAddress("Receiver Name", "receiver@email.com"));
+        email.From.Add(new MailboxAddress("Mário Gomes", "marioferreiragomes333@gmail.com"));
+        email.To.Add(new MailboxAddress("Rodrigo", "narew59353@giratex.com"));
         email.Subject = "Testing out email sending";
 
         email.Body = new TextPart(MimeKit.Text.TextFormat.Html) {
@@ -57,7 +58,7 @@ public class SendEmailService : ISendEmailService
             smtp.Connect("smtp.gmail.com", 587, false);
 
             // Note: only needed if the SMTP server requires authentication
-            smtp.Authenticate("smtp_username", "smtp_password");
+            smtp.Authenticate("Mário Gomes", "Dario!qaz2wsx");
 
             smtp.Send(email);
             smtp.Disconnect(true);

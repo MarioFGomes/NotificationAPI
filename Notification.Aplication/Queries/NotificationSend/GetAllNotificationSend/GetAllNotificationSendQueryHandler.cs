@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Notification.Aplication.DTO.Response;
+using Notification.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,17 @@ using System.Threading.Tasks;
 namespace Notification.Aplication.Queries.NotificationSend.GetAllNotificationSend;
 public class GetAllNotificationSendQueryHandler : IRequestHandler<GetAllNotificationSendQuery, List<ResponseNotificationSend>> 
 {
-    public GetAllNotificationSendQueryHandler()
+    private readonly INotificationSendRepository _notificationSendRepository;
+    private readonly IMapper _mapper;
+    public GetAllNotificationSendQueryHandler(INotificationSendRepository notificationSendRepository, IMapper mapper)
     {
-        
+        _notificationSendRepository = notificationSendRepository;
+        _mapper = mapper;
     }
-    public Task<List<ResponseNotificationSend>> Handle(GetAllNotificationSendQuery request, CancellationToken cancellationToken) 
+    public async Task<List<ResponseNotificationSend>> Handle(GetAllNotificationSendQuery request, CancellationToken cancellationToken) 
     {
-        throw new NotImplementedException();
+        var notificationsent = await _notificationSendRepository.GetAllAsync(request.Query);
+        var notificationsentList=_mapper.Map<List<ResponseNotificationSend>>(notificationsent);
+        return notificationsentList;
     }
 }

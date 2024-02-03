@@ -18,9 +18,9 @@ public class NotificationSendRepository : INotificationSendRepository
         await _db.NotificationSent.AddAsync(request);
     }
 
-    public async Task<ICollection<NotificationSend?>> GetbyAllAsync(string query) 
+    public async Task<ICollection<NotificationSend?>> GetAllAsync(string query) 
     {
-        IQueryable<NotificationSend?> notificationsents = _db.NotificationSent.Where(s=>s.Status== (int)NotificationStatus.Active);
+        IQueryable<NotificationSend?> notificationsents = _db.NotificationSent.Include(s=>s.notificationTemplate).Include(s=>s.notificationDevice).Where(s=>s.Status== (int)NotificationStatus.Active);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             notificationsents = notificationsents.Where(u => u.from.Contains(query) || u.to.Contains(query));
@@ -31,6 +31,6 @@ public class NotificationSendRepository : INotificationSendRepository
 
     public async Task<NotificationSend?> GetbyIdAsync(Guid Id) 
     {
-        return await _db.NotificationSent.SingleOrDefaultAsync(u => u.Id == Id && u.Status== (int)NotificationStatus.Active);
+        return await _db.NotificationSent.Include(u=>u.notificationTemplate).Include(u=>u.notificationDevice).SingleOrDefaultAsync(u => u.Id == Id && u.Status== (int)NotificationStatus.Active);
     }
 }

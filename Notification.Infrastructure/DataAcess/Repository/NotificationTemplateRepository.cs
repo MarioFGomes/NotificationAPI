@@ -23,7 +23,7 @@ public class NotificationTemplateRepository : INotificationTemplateRepository
 
     public async Task<ICollection<NotificationTemplate?>> GetAllAsync(string query) 
     {
-        IQueryable<NotificationTemplate?> notificationTemplate = _db.NotificationTemplate.Where(u=>u.Status== (int)NotificationStatus.Active);
+        IQueryable<NotificationTemplate?> notificationTemplate = _db.NotificationTemplate.Include(u=>u.notificationType).Where(u=>u.Status== (int)NotificationStatus.Active);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             notificationTemplate = notificationTemplate.Where(u => u.title.Contains(query) || u.description.Contains(query));
@@ -34,7 +34,7 @@ public class NotificationTemplateRepository : INotificationTemplateRepository
 
     public Task<NotificationTemplate?> GetbyIdAsync(Guid Id) 
     {
-        return _db.NotificationTemplate.SingleOrDefaultAsync(t => t.Id == Id && t.Status== (int)NotificationStatus.Active);
+        return _db.NotificationTemplate.Include(t=>t.notificationType).SingleOrDefaultAsync(t => t.Id == Id && t.Status== (int)NotificationStatus.Active);
     }
 
     public Task UpdateAsync(NotificationTemplate request) 
