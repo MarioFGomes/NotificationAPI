@@ -123,6 +123,9 @@
   <data name="DescritionLength" xml:space="preserve">
     <value>The description must contain at least 8 letters</value>
   </data>
+  <data name="DestinationEmpty" xml:space="preserve">
+    <value>Destination can not be empty</value>
+  </data>
   <data name="DeviceOwner" xml:space="preserve">
     <value>divice Owner is requerid</value>
   </data>
@@ -146,5 +149,17 @@
   </data>
   <data name="NotificationNotFound" xml:space="preserve">
     <value>Sorry we not found please try again</value>
+  </data>
+  <data name="TamplateType" xml:space="preserve">
+    <value>Please enter the type of notification</value>
+  </data>
+  <data name="TemplateBody" xml:space="preserve">
+    <value>Can not insert empty body</value>
+  </data>
+  <data name="TemplateDescription" xml:space="preserve">
+    <value>Can not insert empty description</value>
+  </data>
+  <data name="TemplateTitle" xml:space="preserve">
+    <value>Can not insert empty title</value>
   </data>
 </root>

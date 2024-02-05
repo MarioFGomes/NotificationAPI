@@ -20,7 +20,7 @@ public class Version001 : Migration {
         NotificationDevice
               .WithColumn("Owner").AsString(200).NotNullable()
               .WithColumn("description").AsString(150).Nullable()
-              .WithColumn("device_type").AsString(50).NotNullable()
+              .WithColumn("device_type").AsInt64().NotNullable()
               .WithColumn("device_token").AsString(200).NotNullable();
 
 

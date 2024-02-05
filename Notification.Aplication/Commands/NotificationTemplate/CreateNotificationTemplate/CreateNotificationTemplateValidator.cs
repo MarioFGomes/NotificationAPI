@@ -10,10 +10,10 @@ public class CreateNotificationTemplateValidator : AbstractValidator<CreateNotif
 {
     public CreateNotificationTemplateValidator()
     {
-        RuleFor(c => c.title).NotEmpty().WithMessage(ResourceErrorMessages.DeviceTypeEmpty);
-        RuleFor(c => c.description).NotEmpty().WithMessage(ResourceErrorMessages.DeviceOwner);
-        RuleFor(c => c.body).NotEmpty().WithMessage(ResourceErrorMessages.DeviceToken);
-        RuleFor(c => c.NotificationTypeId).NotNull().WithMessage(ResourceErrorMessages.DescritionLength);
+        RuleFor(c => c.title).NotEmpty().WithMessage(ResourceErrorMessages.TemplateTitle);
+        RuleFor(c => c.description).NotEmpty().WithMessage(ResourceErrorMessages.TemplateDescription);
+        RuleFor(c => c.body).NotEmpty().WithMessage(ResourceErrorMessages.TemplateBody);
+        RuleFor(c => c.NotificationTypeId).NotNull().WithMessage(ResourceErrorMessages.TamplateType);
     }
 }
     

@@ -79,6 +79,15 @@ namespace Notification.Aplication {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Destination can not be empty.
+        /// </summary>
+        internal static string DestinationEmpty {
+            get {
+                return ResourceManager.GetString("DestinationEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a divice Owner is requerid.
         /// </summary>
         internal static string DeviceOwner {
@@ -147,6 +156,42 @@ namespace Notification.Aplication {
         internal static string NotificationNotFound {
             get {
                 return ResourceManager.GetString("NotificationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Please enter the type of notification.
+        /// </summary>
+        internal static string TamplateType {
+            get {
+                return ResourceManager.GetString("TamplateType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Can not insert empty body.
+        /// </summary>
+        internal static string TemplateBody {
+            get {
+                return ResourceManager.GetString("TemplateBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Can not insert empty description.
+        /// </summary>
+        internal static string TemplateDescription {
+            get {
+                return ResourceManager.GetString("TemplateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Can not insert empty title.
+        /// </summary>
+        internal static string TemplateTitle {
+            get {
+                return ResourceManager.GetString("TemplateTitle", resourceCulture);
             }
         }
     }

@@ -6,6 +6,7 @@ using Notification.Domain.Entities;
 using Notification.Domain.Repositories;
 using Notification.Infrastructure.DataAcess.Repository;
 using Notification.Infrastructure.Services.SendEmail;
+using Notification.Infrastructure.Services.SendSMS;
 using SendGrid.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -21,6 +22,7 @@ public static class Bootstrapper
         AddUnitOfWork(services);
         AddContexto(services, configurationManager);
         AddMailService(services, configurationManager);
+        AddSmsService(services, configurationManager);
     }
 
     private static void AddRepositories(IServiceCollection services) 
@@ -52,13 +54,26 @@ public static class Bootstrapper
     public static void AddMailService(this IServiceCollection services, IConfiguration configuration) {
         var config = new MailConfig();
 
-        configuration.GetSection("Notifications").Bind(config);
+        configuration.GetSection("NotificationsEmail").Bind(config);
 
         services.AddSingleton<MailConfig>(m => config);
 
         services.AddSendGrid(sp => sp.ApiKey = config.SendGridApiKey);
 
         services.AddTransient<ISendEmailService, SendEmailService>();
+
+    }
+
+    public static void AddSmsService(this IServiceCollection services, IConfiguration configuration) 
+    {
+
+        var config = new SmsConfig();
+
+        configuration.GetSection("NotificationSMS").Bind(config);
+
+        services.AddSingleton<SmsConfig>(m => config);
+
+        services.AddTransient<ISendSmsService, SendsmsService>();
 
     }
 

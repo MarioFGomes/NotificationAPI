@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notification.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ public class NotificationDevice: BaseEntity
 {
     public string Owner { get; set; }
     public string description { get; set; }
-    public string device_type { get; set; }
+    public DeviceType device_type { get; set; }
     public string device_token { get; set; }
 
 }

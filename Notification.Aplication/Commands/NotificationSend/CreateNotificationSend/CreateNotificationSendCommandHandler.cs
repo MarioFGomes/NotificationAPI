@@ -2,6 +2,7 @@
 using MediatR;
 using Notification.Aplication.Commands.NotificationDevice.CreateNotificationDevice;
 using Notification.Aplication.ExceptionBase;
+using Notification.Domain.Enum;
 using Notification.Domain.Repositories;
 
 
@@ -11,19 +12,37 @@ public class CreateNotificationSendCommandHandler : IRequestHandler<CreateNotifi
     private readonly IUnitofWork _unitofWork;
     private readonly IMapper _mapper;
     private readonly INotificationSendRepository _notificationSendRepository;
+    private readonly INotificationTemplateRepository _notificationTemplateRepository;
+    private readonly INotificationDeviceRepository _notificationDeviceRepository;
     private readonly ISendEmailService _SendEmailService;
-    public CreateNotificationSendCommandHandler(IUnitofWork unitofWork, IMapper mapper, INotificationSendRepository notificationSendRepository, ISendEmailService sendEmailService)
+    private readonly ISendSmsService _sendSmsService;
+    public CreateNotificationSendCommandHandler(IUnitofWork unitofWork, IMapper mapper, INotificationSendRepository notificationSendRepository, ISendEmailService sendEmailService, ISendSmsService sendSmsService, INotificationDeviceRepository notificationDevice , INotificationTemplateRepository notificationTemplate  )
     {
         _mapper= mapper;
         _notificationSendRepository= notificationSendRepository;
-        _unitofWork= unitofWork;
+        _notificationTemplateRepository = notificationTemplate;
+        _notificationDeviceRepository= notificationDevice;  
+        _unitofWork = unitofWork;
         _SendEmailService = sendEmailService;
+        _sendSmsService= sendSmsService;
     }
     public async Task<Unit> Handle(CreateNotificationSendCommand request, CancellationToken cancellationToken) 
     {
         await Validator(request);
 
-        await _SendEmailService.SendNativeAsync("Email de Teste", "Este é um email de teste", "narew59353@giratex.com", "Rodrigo Gomes");
+        var notificationDevice = await _notificationDeviceRepository.GetbyIdAsync(request.notificationDeviceId) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationNotFound);
+
+        var notificationTemplate = await _notificationTemplateRepository.GetbyIdAsync(request.notificationTemplateId) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationNotFound);
+
+        if (notificationDevice.device_type== DeviceType.WebEmail) 
+        {
+            await _SendEmailService.SendAsync(notificationTemplate.title, notificationTemplate.description, notificationDevice.device_token, notificationDevice.Owner);
+        }
+
+        if (notificationDevice.device_type== DeviceType.Phone) 
+        {
+            await _sendSmsService.SendAsync(notificationTemplate.description, notificationDevice.device_token);
+        }
 
         var result=_mapper.Map<Notification.Domain.Entities.NotificationSend>(request);
 

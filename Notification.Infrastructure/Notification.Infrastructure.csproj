@@ -22,6 +22,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="7.0.11" />
     <PackageReference Include="SendGrid" Version="9.29.1" />
     <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
+    <PackageReference Include="Twilio" Version="6.16.1" />
   </ItemGroup>
 
   <ItemGroup>

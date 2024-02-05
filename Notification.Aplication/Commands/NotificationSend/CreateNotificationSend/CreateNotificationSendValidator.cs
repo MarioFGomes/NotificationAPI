@@ -12,7 +12,7 @@ public class CreateNotificationSendValidator : AbstractValidator<CreateNotificat
 
     public CreateNotificationSendValidator()
     {
-        RuleFor(c => c.to).NotEmpty().MinimumLength(5).WithMessage("Invalid Email");
-        RuleFor(c => c.from).NotEmpty().MinimumLength(5).WithMessage("Invalid Email");
+        RuleFor(c => c.notificationDeviceId).NotEmpty().WithMessage(ResourceErrorMessages.DestinationEmpty);
+        RuleFor(c => c.notificationTemplateId).NotEmpty().WithMessage(ResourceErrorMessages.DestinationEmpty);
     }
 }

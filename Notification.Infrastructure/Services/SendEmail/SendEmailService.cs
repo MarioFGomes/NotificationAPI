@@ -38,7 +38,7 @@ public class SendEmailService : ISendEmailService
             await _sendGridClient.SendEmailAsync(message);
         }catch (Exception ex) 
         {
-
+            throw new Exception(ex.Message);
         }
     }
 
@@ -58,10 +58,10 @@ public class SendEmailService : ISendEmailService
             smtp.Connect("smtp.gmail.com", 587, false);
 
             // Note: only needed if the SMTP server requires authentication
-            smtp.Authenticate("Mário Gomes", "Dario!qaz2wsx");
+           await smtp.AuthenticateAsync("your_user_name", "your_password");
 
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            await smtp.SendAsync(email).ConfigureAwait(false);
+            await smtp.DisconnectAsync(true).ConfigureAwait(false);
         }
     }
 }
