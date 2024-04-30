@@ -36,7 +36,7 @@ public class CreateNotificationSendCommandHandler : IRequestHandler<CreateNotifi
 
         if (notificationDevice.device_type== DeviceType.WebEmail) 
         {
-            await _SendEmailService.SendAsync(notificationTemplate.title, notificationTemplate.description, notificationDevice.device_token, notificationDevice.Owner);
+            await _SendEmailService.SendAsync(notificationTemplate.title, notificationTemplate.body, notificationDevice.device_token, notificationDevice.Owner);
         }
 
         if (notificationDevice.device_type== DeviceType.Phone) 

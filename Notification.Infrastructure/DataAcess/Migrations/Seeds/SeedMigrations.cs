@@ -9,8 +9,22 @@ public class SeedData : Migration {
     {
 
         Delete.FromTable("NotificationTypes")
-          .Row(new { name = "Verification Code", description = "Verification code for reset password" })
-          .Row(new { name = "User Created",      description = "When same user is created" });
+             .Row(new {
+                 Id = Guid.NewGuid(),
+                 CreatedAt = DateTime.UtcNow,
+                 LastUpdate = DateTime.UtcNow,
+                 Status = 1,
+                 name = "Verification Code",
+                 description = "Verification code for reset password"
+             })
+             .Row(new {
+                 Id = Guid.NewGuid(),
+                 CreatedAt = DateTime.UtcNow,
+                 LastUpdate = DateTime.UtcNow,
+                 Status = 1,
+                 name = "User Created",
+                 description = "When same user is created"
+             });
 
     }
 
@@ -18,7 +32,21 @@ public class SeedData : Migration {
     {
 
         Insert.IntoTable("NotificationTypes")
-              .Row(new { name = "Verification Code", description = "Verification code for reset password" })
-              .Row(new { name = "User Created",      description = "When same user is created" });     
+              .Row(new {
+                   Id= Guid.NewGuid(),
+                   CreatedAt=DateTime.UtcNow,
+                   LastUpdate=DateTime.UtcNow,
+                   Status=1,
+                   name = "Verification Code", 
+                   description = "Verification code for reset password" 
+              })
+              .Row(new {
+                  Id = Guid.NewGuid(),
+                  CreatedAt = DateTime.UtcNow,
+                  LastUpdate = DateTime.UtcNow,
+                  Status = 1,
+                  name = "User Created",      
+                  description = "When same user is created" 
+              });     
     }
 }

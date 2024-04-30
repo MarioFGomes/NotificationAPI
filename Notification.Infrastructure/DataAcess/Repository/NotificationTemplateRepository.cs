@@ -18,12 +18,12 @@ public class NotificationTemplateRepository : INotificationTemplateRepository
     }
     public async Task CreateAsync(NotificationTemplate request) 
     {
-        await _db.NotificationTemplate.AddAsync(request);
+        await _db.NotificationTemplates.AddAsync(request);
     }
 
     public async Task<ICollection<NotificationTemplate?>> GetAllAsync(string query) 
     {
-        IQueryable<NotificationTemplate?> notificationTemplate = _db.NotificationTemplate.Include(u=>u.notificationType).Where(u=>u.Status== (int)NotificationStatus.Active);
+        IQueryable<NotificationTemplate?> notificationTemplate = _db.NotificationTemplates.Include(u=>u.notificationType).Where(u=>u.Status== (int)NotificationStatus.Active);
 
         if (!string.IsNullOrWhiteSpace(query)) {
             notificationTemplate = notificationTemplate.Where(u => u.title.Contains(query) || u.description.Contains(query));
@@ -34,12 +34,12 @@ public class NotificationTemplateRepository : INotificationTemplateRepository
 
     public Task<NotificationTemplate?> GetbyIdAsync(Guid Id) 
     {
-        return _db.NotificationTemplate.Include(t=>t.notificationType).SingleOrDefaultAsync(t => t.Id == Id && t.Status== (int)NotificationStatus.Active);
+        return _db.NotificationTemplates.Include(t=>t.notificationType).SingleOrDefaultAsync(t => t.Id == Id && t.Status== (int)NotificationStatus.Active);
     }
 
     public Task UpdateAsync(NotificationTemplate request) 
      {
-        _db.NotificationTemplate.Update(request);
+        _db.NotificationTemplates.Update(request);
 
         return Task.CompletedTask;
     }

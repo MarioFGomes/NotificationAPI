@@ -1,12 +1,9 @@
-
-
-using Microsoft.Extensions.DependencyInjection;
 using Notification.API.Filter;
 using Notification.Aplication.Commands.NotificationTypes.CreateNotificationTypes;
 using Notification.Aplication.Service.Automapper;
 using Notification.Infrastructure.DataAcess;
 using Notification.Infrastructure.DataAcess.Migrations;
-using Npgsql;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,10 +42,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MigrationsDataBase();
 
 app.Run();
 
- app.MigrationsDataBase();
+
 
 
 public partial class Program { }

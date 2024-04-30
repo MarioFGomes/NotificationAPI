@@ -26,7 +26,9 @@ public class AutoMapperConfiguration: Profile
         CreateMap<NotificationType, ResponseNotificationTypes>();
         CreateMap<CreateNotificationDeviceCommand,NotificationDevice>();
         CreateMap<NotificationDevice, ResponseNotificationDevice>();
-        CreateMap<UpdateNotificationDeviceCommand, NotificationDevice>();
+        CreateMap<UpdateNotificationDeviceCommand, NotificationDevice>()
+        .ForMember(dto => dto.LastUpdate, opt => opt.Ignore())
+        .ForMember(dto => dto.CreatedAt, opt => opt.Ignore());
         CreateMap<CreateNotificationTemplateCommand, NotificationTemplate>();
         CreateMap<NotificationTemplate, ResponseNotificationTemplate>();
         CreateMap<UpdateNotificationTemplateCommand, NotificationTemplate>();

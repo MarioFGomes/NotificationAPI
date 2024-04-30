@@ -15,7 +15,9 @@ namespace Notification.Infrastructure.DataAcess {
             _contexto = context;
         }
 
-        public async Task Commit() {
+        public async Task Commit() 
+        {
+            this._contexto._SetChangesValue();
             await _contexto.SaveChangesAsync();
         }
 

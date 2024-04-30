@@ -22,9 +22,7 @@ public class UpdateNotificationDeviceCommandHandler : IRequestHandler<UpdateNoti
         await Validator(request);
         var notificationDevice = await _notificationDeviceRepository.GetbyIdAsync(request.Id) ?? throw new GenericErrorException(ResourceErrorMessages.NotificationNotFound);
 
-        notificationDevice = _mapper.Map(request, notificationDevice);
-
-        notificationDevice.LastUpdate = DateTime.UtcNow;
+       notificationDevice = _mapper.Map(request, notificationDevice);
 
         await _notificationDeviceRepository.UpdateAsync(notificationDevice);
 

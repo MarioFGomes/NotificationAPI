@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  Notification-pg:
+  Notification-postgres:
     image: bitnami/postgresql
     container_name: Notification_Database
     restart: always
@@ -12,5 +12,17 @@ services:
       - POSTGRES_PASSWORD=1qaz2wsx
       - POSTGRESQL_DATABASE=notification
     volumes:
-      - pgdata:/data/postgres
+      - pgdata:/bitnami/postgresql
     network_mode: host
+  app:
+    build: .
+    container_name: NotificationAPI
+    ports:
+      - 80:80
+    volumes:
+      - .:/app
+    network_mode: host
+
+volumes:
+  pgdata:
+    driver: local

@@ -43,8 +43,8 @@ public class Version001 : Migration {
         var NotificationSent = BaseVersion.InsarirColunasPadrao(Create.Table("NotificationSents"));
 
         NotificationSent
-              .WithColumn("to").AsString(200).NotNullable()
-              .WithColumn("from").AsString(200).NotNullable()
+              .WithColumn("to").AsString(200).Nullable()
+              .WithColumn("from").AsString(200).Nullable()
               .WithColumn("notificationTemplateId").AsGuid().ForeignKey("NotificationTemplates","Id").NotNullable()
               .WithColumn("notificationDeviceId").AsGuid().ForeignKey("NotificationDevices","Id").Nullable();
     }

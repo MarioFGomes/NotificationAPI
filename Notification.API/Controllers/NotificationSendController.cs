@@ -17,7 +17,7 @@ public class NotificationSendController : NotificationController
 
         var Id = await _mediator.Send(request);
 
-        return CreatedAtAction(nameof(GetById), new { Id }, request);
+        return NoContent();
     }
 
 
