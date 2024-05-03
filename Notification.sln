@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Aplication", "Notification.Aplication\Notification.Aplication.csproj", "{E14BAAA6-89DD-4DE0-B129-7D3F467EEF1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Aplication", "src\Notification.Aplication\Notification.Aplication.csproj", "{E14BAAA6-89DD-4DE0-B129-7D3F467EEF1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Domain", "Notification.Domain\Notification.Domain.csproj", "{E527B8D8-AD0C-4767-AC4C-421FC4C31CC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Domain", "src\Notification.Domain\Notification.Domain.csproj", "{E527B8D8-AD0C-4767-AC4C-421FC4C31CC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Infrastructure", "Notification.Infrastructure\Notification.Infrastructure.csproj", "{AA49A5F5-A13F-4D8D-8E24-94032B819FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Infrastructure", "src\Notification.Infrastructure\Notification.Infrastructure.csproj", "{AA49A5F5-A13F-4D8D-8E24-94032B819FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.API", "Notification.API\Notification.API.csproj", "{2E5E9E88-702D-451A-ABDB-1D6B3C40656E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.API", "src\Notification.API\Notification.API.csproj", "{2E5E9E88-702D-451A-ABDB-1D6B3C40656E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8EE9D9AC-9988-4160-B188-02C610A666CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E14BAAA6-89DD-4DE0-B129-7D3F467EEF1D} = {8EE9D9AC-9988-4160-B188-02C610A666CC}
+		{E527B8D8-AD0C-4767-AC4C-421FC4C31CC2} = {8EE9D9AC-9988-4160-B188-02C610A666CC}
+		{AA49A5F5-A13F-4D8D-8E24-94032B819FA5} = {8EE9D9AC-9988-4160-B188-02C610A666CC}
+		{2E5E9E88-702D-451A-ABDB-1D6B3C40656E} = {8EE9D9AC-9988-4160-B188-02C610A666CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93E98B36-A035-4DB2-A06B-AB72834D61A1}
