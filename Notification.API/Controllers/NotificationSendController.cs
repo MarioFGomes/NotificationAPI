@@ -13,6 +13,7 @@ public class NotificationSendController : NotificationController
 {
 
     [HttpPost]
+    [Route("device")]
     public async Task<IActionResult> SendNotificationOnDevice([FromServices] IMediator _mediator, [FromBody] CreateNotificationSendCommand request) 
     {
 
@@ -22,8 +23,8 @@ public class NotificationSendController : NotificationController
     }
 
     [HttpPost]
-    public async Task<IActionResult> SendWebEmailNotification([FromServices] IMediator _mediator, [FromBody] SendWebEmailNotificationCommand request) 
-    {
+    [Route("email/send")]
+    public async Task<IActionResult> SendWebEmailNotification([FromServices] IMediator _mediator, [FromBody] SendWebEmailNotificationCommand request) {
 
         await _mediator.Send(request);
 
@@ -31,9 +32,9 @@ public class NotificationSendController : NotificationController
     }
 
     [HttpPost]
-    public async Task<IActionResult> SendSMSNotification([FromServices] IMediator _mediator, [FromBody] SendSMSNotificationCommand request) 
-    {
-         await _mediator.Send(request);
+    [Route("sms/send")]
+    public async Task<IActionResult> SendSMSNotification([FromServices] IMediator _mediator, [FromBody] SendSMSNotificationCommand request) {
+        await _mediator.Send(request);
 
         return NoContent();
     }

@@ -26,24 +26,17 @@ Notification API  é uma aplicação para facilitar o envio de Email e SMS usand
 Pode salvar os tipos de notificação a ser envidas pela a sua aplicação 
 
 #### Endpoint
-`POST /api/email/send`
+`POST /api/notificationtype`
+`GET /api/notificationtype/getall`
 
 #### Parâmetros de Requisição
-- `to`: Endereço de e-mail do destinatário.
-- `subject`: Assunto do e-mail.
-- `body`: Corpo do e-mail.
+- `name`: nome do tipo de notificação a ser enviada.
+- `description`: uma descrição explicando o tipo de notificação
+
 
 #### Exemplo de Requisição
 ```json
 {
-  "to": "destinatario@example.com",
-  "subject": "Assunto da Notificação",
-  "body": "Conteúdo da Notificação por E-mail"
+  "name": "Verification code",
+  "description": "when same user ask a verification code"
 }
-
-
-
-
-![Alt text](NotificationSwagger-1.jpg)
-
-![Alt text](<Diagrama NotificationAPI-1.jpg>)
